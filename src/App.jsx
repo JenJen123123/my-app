@@ -22,13 +22,25 @@
 // export default App;
 
 import NewAppStyleComp from "./playground/NewAppStyleComp";
+import SxComponent from './playground/SxComponent';
+import { Fragment } from "react";
+import ButtonsComponent from "./playground/ButtonsComponent";
+import NewButtonsComp from "./playground/NewButtonsComp";
+import CardComponent from "./playground/CardComponent";
+import Cards from "./card/Card";
+
 
 const App2 = () => {
   return (
-    <div>
-      <NewAppStyleComp />
-    </div>
+    <Fragment>
+      {/* <NewAppStyleComp />
+      <SxComponent />
+      <ButtonsComponent/>
+      <NewButtonsComp/>
+      <CardComponent/> */}
+      <Cards/>
+    </Fragment>
   );
-}
+};
 
 export default App2;
