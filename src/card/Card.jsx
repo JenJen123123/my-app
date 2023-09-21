@@ -20,7 +20,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Cards = () => {
     return (
-        <Box margin="5%" width="20vw" height="60vh">
+        <Box margin="5%">
+            {/* width="20vw" height="60vh" */}
             <Card Raised>
                 <CardMedia
                     component="img"
