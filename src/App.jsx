@@ -34,6 +34,8 @@
 import { Container } from "@mui/material";
 import Animals from "./card/Animals";
 import TargilUpperBar from "./card/TargilUpperBar";
+import Targil from "./L4/Targil";
+import LoginPage from "./pages/login/LoginPage";
 
 
 let dataFromServer = [
@@ -96,9 +98,13 @@ const App2 = () => {
     //   {animalsArr.map((x)=>(<Animals key={x} name={x} />))}
     // </Container>
 
-    <Container>
-      <TargilUpperBar/>
-    </Container>
+    // <Container>
+    //   <TargilUpperBar/>
+    // </Container>
+
+    // <Targil/>
+
+    <LoginPage />
   );
 };
 
