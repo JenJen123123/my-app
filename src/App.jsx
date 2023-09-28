@@ -1,3 +1,24 @@
+import LoginPage from "./homeExercise/LoginPage"
+import HomePage from "./pages/home/HomePage"
+import UsersAdmin from "./pages/home/UsersAdmin"
+
+
+const App = () => {
+  return (
+    <div>
+      <HomePage />
+    </div>
+  )
+}
+
+export default App
+
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 // import MyFirstComponent from "./playground/MyFirstComponent";
 // import My2Component from "./playground/My2Component";
 // import My3Component from "./playground/My3Component";
@@ -29,87 +50,94 @@
 // import CardComponent from "./playground/CardComponent";
 // import Cards from "./card/Card";
 // import CardsExercise from "./homeExercise/CardsExercise"
-// import CardsComponents from "./card/CardsComponents"
-// import CardsContainerComponent from "./card/CardsContainerComponent"
-import { Container } from "@mui/material";
-import Animals from "./card/Animals";
-import TargilUpperBar from "./card/TargilUpperBar";
-import Targil from "./L4/Targil";
-import LoginPage from "./pages/login/LoginPage";
+// import CardsComponents from "./card/CardsComponents";
+// import CardsContainerComponent from "./card/CardsContainerComponent";
+// import { Container } from "@mui/material";
+// import Animals from "./card/Animals";
+// import TargilUpperBar from "./card/TargilUpperBar";
+// import Targil from "./L4/Targil";
+// import LoginPage from "./pages/login/LoginPage";
+// import RegisterComponent from "./pages/register/RegisterPage";
+// import BussinesCard from "./homeExercise/BussinesCard";
+// import TestStuff from "./homeExercise/TestStuff";
 
 
-let dataFromServer = [
-  {
-    title: "card 1",
-    subTitle: "card 1 sub title",
-    phone: "050-50055005",
-    address: "lkjasdf;lkjsdfoilk",
-    cardNumber: 3521354354,
-    img: "https://pngimg.com/d/free_PNG90775.png",
-    alt: "free",
-  },
-  {
-    title: "card 2",
-    subTitle: "card 2 sub title",
-    phone: "050-50055005",
-    address: "lkjasdf;lkjsdfoilk",
-    cardNumber: 3521354354,
-    img: "https://pngimg.com/d/free_PNG90775.png",
-    alt: "free",
-  },
-  {
-    title: "card 3",
-    subTitle: "card 3 sub title",
-    phone: "050-50055005",
-    address: "lkjasdf;lkjsdfoilk",
-    cardNumber: 3521354354,
-    img: "https://pngimg.com/d/free_PNG90775.png",
-    alt: "free",
-  },
-  {
-    title: "card 4",
-    subTitle: "card 4 sub title",
-    phone: "050-50055005",
-    address: "lkjasdf;lkjsdfoilk",
-    cardNumber: 3521354354,
-    img: "https://pngimg.com/d/free_PNG90775.png",
-    alt: "free",
-  },
-];
+// let dataFromServer = [
+//   {
+//     title: "card 1",
+//     subTitle: "card 1 sub title",
+//     phone: "050-50055005",
+//     address: "lkjasdf;lkjsdfoilk",
+//     cardNumber: 3521354354,
+//     img: "https://pngimg.com/d/free_PNG90775.png",
+//     alt: "free",
+//   },
+//   {
+//     title: "card 2",
+//     subTitle: "card 2 sub title",
+//     phone: "050-50055005",
+//     address: "lkjasdf;lkjsdfoilk",
+//     cardNumber: 3521354354,
+//     img: "https://pngimg.com/d/free_PNG90775.png",
+//     alt: "free",
+//   },
+//   {
+//     title: "card 3",
+//     subTitle: "card 3 sub title",
+//     phone: "050-50055005",
+//     address: "lkjasdf;lkjsdfoilk",
+//     cardNumber: 3521354354,
+//     img: "https://pngimg.com/d/free_PNG90775.png",
+//     alt: "free",
+//   },
+//   {
+//     title: "card 4",
+//     subTitle: "card 4 sub title",
+//     phone: "050-50055005",
+//     address: "lkjasdf;lkjsdfoilk",
+//     cardNumber: 3521354354,
+//     img: "https://pngimg.com/d/free_PNG90775.png",
+//     alt: "free",
+//   },
+// ];
 
 
-let animalsArr = ["Cat", "Dog", "Mouse", "Rat", "Horse"];
+// let animalsArr = ["Cat", "Dog", "Mouse", "Rat", "Horse"];
 
-const App2 = () => {
-  return (
-    // <Fragment>
-    //   <NewAppStyleComp />
-    //   <SxComponent />
-    //   <ButtonsComponent/>
-    //   <NewButtonsComp/>
-    //   <CardComponent/>
-    //   <CardsExercise/>
-    //   <CardsComponents/>
-    //   <Cards/>
-    //   <CardsContainerComponent/>
-    // </Fragment>
+// const App2 = () => {
+// return (
+// <Fragment>
+//   <NewAppStyleComp />
+//   <SxComponent />
+//   <ButtonsComponent/>
+//   <NewButtonsComp/>
+// <CardComponent/>
+//   <CardsExercise/>
+//   <CardsComponents/>
+// <Car/ds/>
+// <CardsContainerComponent/>
+// </Fragment>
 
-    // <Container>
-    //   {animalsArr.map((x)=>(<Animals key={x} name={x} />))}
-    // </Container>
+// <Container>
+//   {animalsArr.map((x)=>(<Animals key={x} name={x} />))}
+// </Container>
 
-    // <Container>
-    //   <TargilUpperBar/>
-    // </Container>
+// <Container>
+//   <TargilUpperBar/>
+// </Container>
 
-    // <Targil/>
+// <Targil/>
 
-    <LoginPage />
-  );
-};
+// <LoginPage />
 
-export default App2;
+// <RegisterComponent />
+// <BussinesCard />
 
+// <TestStuff />
+// );
+// };
+
+// export default App2;
 
 // dataFromServer.map((item) => (
 //   <CardComponent

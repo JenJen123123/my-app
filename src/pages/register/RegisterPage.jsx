@@ -20,6 +20,7 @@ const RegisterComponent = () => {
     email: "",
     password: "",
   });
+  
   const handleInputsChange = (e) => {
     //step 1
     // setInputsValue((currentState) => {
