@@ -1,15 +1,21 @@
 import LoginPage from "./homeExercise/LoginPage"
+import HeaderComponent from "./layout/header/HeaderComponent"
 import HomePage from "./pages/home/HomePage"
 import UsersAdmin from "./pages/home/UsersAdmin"
-
+import LayoutComponent from "./layout/LayoutComponent"
+import RegisterComponent from "./pages/register/RegisterPage"
+import Error from "./layout/error/Error"
+import Router from "./routes/Router"
+import UserManagement from "./pages/users/UserManagement"
 
 const App = () => {
   return (
-    <div>
-      <HomePage />
-    </div>
-  )
-}
+    <LayoutComponent>
+      <Router/>
+      <UserManagement />
+    </LayoutComponent>
+  );
+};
 
 export default App
 
