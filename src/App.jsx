@@ -7,12 +7,14 @@ import RegisterComponent from "./pages/register/RegisterPage"
 import Error from "./layout/error/Error"
 import Router from "./routes/Router"
 import UserManagement from "./pages/users/UserManagement"
+import Users from "./pages/users/Users"
+import AllUsers from "./pages/users/AllUsers"
+
 
 const App = () => {
   return (
     <LayoutComponent>
       <Router/>
-      <UserManagement />
     </LayoutComponent>
   );
 };

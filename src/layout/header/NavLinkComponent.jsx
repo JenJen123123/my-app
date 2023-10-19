@@ -15,11 +15,11 @@ const NavLinkComponent = ({ to, children }) => {
         </NavLink>
     );
 };
-{
+// {
     /* <Link to={to}>
         <Typography color="text.primary" sx={{ p: 2 }}>
-          {children}
+        {children}
         </Typography>
       </Link> */
-}
+// }
 export default NavLinkComponent;
