@@ -15,17 +15,12 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { Switch } from "@mui/material";
 import { Link } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import NavLinkComponent from "./NavLinkComponent";
 import nextKey from "generate-my-key";
-
-const myLinks = [
-  { to: ROUTES.HOME, children: "Home page" },
-  { to: ROUTES.REGISTER, children: "Register page" },
-  { to: ROUTES.LOGIN, children: "Login page" },
-  { to: ROUTES.USERS, children: "Users" },
-];
+import myLinks from "../myLinks";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,7 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -89,6 +84,10 @@ const HeaderComponent = () => {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleThemeChange = (event) => {
+    onThemeChange(event.target.checked);
   };
 
   const menuId = "primary-search-account-menu";
@@ -184,9 +183,8 @@ const HeaderComponent = () => {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            LOGO
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {myLinks.map((myItem) => (
               <NavLinkComponent to={myItem.to} key={nextKey()}>
@@ -194,20 +192,6 @@ const HeaderComponent = () => {
               </NavLinkComponent>
             ))}
           </Box>
-          {/* <Box>
-            <Link to={ROUTES.HOME}>
-              <Typography sx={{ marginLeft: 5, color: "white" }}>
-                HomePage
-              </Typography>
-            </Link>
-          </Box>
-          <Box>
-            <Link to={ROUTES.LOGIN}>
-              <Typography sx={{ marginLeft: 5, color: "white" }}>
-                Login
-              </Typography>
-            </Link>
-          </Box> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -217,6 +201,17 @@ const HeaderComponent = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          <Box
+            sx={{
+              my: 2,
+              p: 1,
+            }}
+          >
+            <Typography sx={{ display: { xs: "none", md: "inline" } }}>
+              {isDarkTheme ? "Dark" : "Light"} Mode
+            </Typography>
+            <Switch checked={isDarkTheme} onChange={handleThemeChange} />
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton

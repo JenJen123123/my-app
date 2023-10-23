@@ -26,12 +26,11 @@ const FooterComponent = () => {
           setValue(newValue);
         }}
       >
-        {myLinks.map((myLink) => (
-          <NavLinkComponent to={myLink.to} key={nextKey()}>
-            {myLink.children}
+        {myLinks.map((mylink) => (
+          <NavLinkComponent to={mylink.to} key={nextKey()}>
+            {mylink.children}
           </NavLinkComponent>
         ))}
-        
         {/* <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
         <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
         <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} /> */}
