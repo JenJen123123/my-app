@@ -12,11 +12,18 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import CopyrightComponent from "./ui/CopyrightComponent";
 import { useNavigate } from "react-router-dom";
-import ROUTES from "../../routes/ROUTES";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/authSlice";
+import CopyrightComponent from "./ui/CopyrightComponent";
+import ROUTES from "../../routes/ROUTES";
+import { validateLogin } from "../../validation/loginValidation";
+import { Alert } from "@mui/material";
+import useAutoLogin from "../../hooks/useAutoLogin";
+import { storeToken } from "../../service/storageService";
 
 const LoginPage = () => {
   /* top lvl for hooks */
@@ -28,16 +35,28 @@ const LoginPage = () => {
    */
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [rememberMe, setRememberMe] = useState(true);
+  const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const autoLogin = useAutoLogin();
   /* logic lvl for js */
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
+      const joiResponse = validateLogin({
+        email: emailValue,
+        password: passwordValue,
+      });
+      console.log("joiResponse", joiResponse);
+      setErrorsState(joiResponse);
+      if (joiResponse) return;
       let { data } = await axios.post("/users/login", {
         email: emailValue,
         password: passwordValue,
       });
-      localStorage.setItem("token", data);
+      // localStorage.setItem("token", data);
+      storeToken(data, rememberMe);
       console.log("data from login", data);
       toast("You logged in successfully 👌", {
         position: "top-right",
@@ -49,6 +68,7 @@ const LoginPage = () => {
         progress: undefined,
         theme: "light",
       });
+      autoLogin(true); //skip token test
       navigate(ROUTES.HOME);
     } catch (err) {
       console.log("err from login", err);
@@ -60,22 +80,8 @@ const LoginPage = () => {
   const handlePasswordInputChange = (e) => {
     setPasswordValue(e.target.value);
   };
-  const handleBtnClick = async () => {
-    // try {
-    //   setTimeout(() => {
-    //     toast("You logged in successfully 👌", {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       theme: "light",
-    //     });
-    //     navigate(ROUTES.HOME);
-    //   }, 2000);
-    // } catch (err) {}
+  const handleRememberMeChange = () => {
+    setRememberMe(!rememberMe);
   };
   /* template lvl for html */
   return (
@@ -131,6 +137,9 @@ const LoginPage = () => {
               value={emailValue}
               onChange={handleEmailInputChange}
             />
+            {errorsState && errorsState.email && (
+              <Alert severity="warning">{errorsState.email}</Alert>
+            )}
             <TextField
               margin="normal"
               required
@@ -143,8 +152,18 @@ const LoginPage = () => {
               value={passwordValue}
               onChange={handlePasswordInputChange}
             />
+            {errorsState && errorsState.password && (
+              <Alert severity="warning">{errorsState.password}</Alert>
+            )}
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={
+                <Checkbox
+                  value="remember"
+                  color="primary"
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                />
+              }
               label="Remember me"
             />
             <Button
@@ -152,7 +171,6 @@ const LoginPage = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={handleBtnClick}
             >
               Sign In
             </Button>

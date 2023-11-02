@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -10,9 +9,9 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import CopyrightComponent from "./ui/CopyrightComponent";
 import axios from "axios";
+import { normalizeData } from "./normalizeData";
+import { validateRegister } from "../../validation/registerValidation";
 
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
@@ -63,29 +62,10 @@ const RegisterPage = () => {
     try {
       event.preventDefault();
       // inputsValue.isBusiness = false;
-      let request = {
-        name: {
-          first: inputsValue.first,
-          middle: inputsValue.middle,
-          last: inputsValue.last,
-        },
-        phone: inputsValue.phone,
-        email: inputsValue.email,
-        password: inputsValue.password,
-        image: {
-          url: inputsValue.url,
-          alt: inputsValue.alt,
-        },
-        address: {
-          state: inputsValue.state,
-          country: inputsValue.country,
-          city: inputsValue.city,
-          street: inputsValue.street,
-          houseNumber: inputsValue.houseNumber,
-          zip: +inputsValue.zip,
-        },
-        isBusiness: false,
-      };
+      const errors = validateRegister(inputsValue);
+      console.log(errors);
+      if (errors) return;
+      let request = normalizeData(inputsValue);
       const { data } = await axios.post("/users", request);
       console.log("data", data);
     } catch (err) {
