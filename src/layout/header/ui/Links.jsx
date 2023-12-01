@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import nextKey from "generate-my-key";
-import myLinks, {
+import {
   alwaysLinks,
   loggedInLinks,
   loggedOutLinks,
@@ -12,11 +12,6 @@ import { useSelector } from "react-redux";
 
 const Links = () => {
   const { loggedIn, userData } = useSelector((bigPie) => bigPie.authSlice);
-
-  // if(userData){
-  //   console.log("from link", userData.isBusiness);
-  // }
-
 
   return (
     <Box sx={{

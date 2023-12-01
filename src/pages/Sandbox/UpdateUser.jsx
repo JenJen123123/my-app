@@ -1,20 +1,16 @@
 import { useState } from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { normalizeUpdatedData } from "./normalizeUpdatedData"
-import { validateRegister } from "../../validation/registerValidation";
 import ROUTES from "../../routes/ROUTES";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const UpdateUser = () => {
@@ -42,9 +38,6 @@ const UpdateUser = () => {
       ...currentState,
       [e.target.id]: e.target.value,
     }));
-
-    // isBusiness = e.target.checked;
-    // console.log("xxx", isBusiness);
   };
 
   const handleInputsChangeCheck = (e) => {
@@ -52,7 +45,6 @@ const UpdateUser = () => {
       ...currentState,
       [e.target.id]: e.target.checked,
     }));
-    // console.log("checked", inputsValue.isBusiness);
   }
 
   const handleSubmit = async (event) => {

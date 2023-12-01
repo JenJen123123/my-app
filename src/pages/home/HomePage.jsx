@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { Container, Grid } from "@mui/material";
-import nextKey from "generate-my-key";
 import CardComponent from "../../components/CardComponent";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
@@ -18,7 +17,7 @@ const HomePage = () => {
     axios
       .get("/cards")
       .then(({ data }) => {
-        if (userData) data = homePageNormalization(data, userData._id);
+        data = homePageNormalization(data, userData ? userData._id : "");
         console.log(data);
         setDataFromServer(data);
       })
@@ -39,9 +38,7 @@ const HomePage = () => {
     setDataFromServer((dataFromServerCopy) =>
       dataFromServerCopy.filter((card) => card._id != _id)
     );
-    //return true for all the cards that has id that not equal to the id we want to delete
   };
-
 
   const handleEditCard = (_id) => {
     navigate(`${ROUTES.EDITCARD}/${_id}`);
@@ -63,7 +60,6 @@ const HomePage = () => {
   };
 
   const handleShowCard = (_id) => {
-    console.log(_id);
     navigate(`${ROUTES.CARD}/${_id}`);
 };
 

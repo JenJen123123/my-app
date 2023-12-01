@@ -32,9 +32,7 @@ const FavCards = () => {
     const filteredCards = useMemo(() => {
         if (!dataFromServer.length) return [];
         const filter = query.filter ? query.filter : "";
-        // setDataFromServer((current) => {
         return dataFromServer.filter((card) => card.title.startsWith(filter));
-        // });
     }, [query, dataFromServer]);
 
     const handleDeleteCard = (_id) => {
@@ -42,8 +40,6 @@ const FavCards = () => {
         setDataFromServer((dataFromServerCopy) =>
             dataFromServerCopy.filter((card) => card._id != _id)
         );
-        // dataFromServer = dataFromServer.filter((card) => card._id != _id);
-        //return true for all the cards that has id that not equal to the id we want to delete
     };
     
     const handleEditCard = (_id) => {

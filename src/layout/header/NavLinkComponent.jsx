@@ -7,7 +7,7 @@ const NavLinkComponent = ({ to, children }) => {
       {({ isActive }) => (
         <Typography
           color={isActive ? "text.headerActive" : "text.headerColor"}
-          sx={{ p: 1, ml: 4, '&:hover': { color: "lime" }, }}
+          sx={{ ml: 4, '&:hover': { color: "lime" }, fontFamily: 'Arial' }}
           variant="h5"
         >
           {children}

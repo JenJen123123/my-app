@@ -16,11 +16,5 @@ const NavLinkComponentVertical = ({ to, children }) => {
     </NavLink>
   );
 };
-{
-  /* <Link to={to}>
-      <Typography color="text.primary" sx={{ p: 2 }}>
-        {children}
-      </Typography>
-    </Link> */
-}
+
 export default NavLinkComponentVertical;

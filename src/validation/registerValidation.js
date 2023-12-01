@@ -9,7 +9,11 @@ const registerSchema = Joi.object({
     .min(9)
     .max(11)
     .pattern(/^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/)
-    .required(),
+    .required()
+    .messages({
+      "string.pattern.base": "Phone pattern : 0501234567",
+      "string.empty": "Phone pattern : 0501234567",
+    }),
   email: Joi.string()
     .email({ tlds: { allow: false } })
     .min(5)
@@ -21,9 +25,9 @@ const registerSchema = Joi.object({
       )
     )
     .messages({
-      "string.pattern.base": "the password should be...",
+      "string.pattern.base": "the password should be with Capital and small letter, special char and numbers",
       "string.empty":
-        "password must be filled with something that you will forget",
+        "password must be filled with something that you will not forget",
     })
     .min(7)
     .max(20)
@@ -39,7 +43,6 @@ const registerSchema = Joi.object({
   isBusiness: Joi.boolean().required(),
 });
 
-const validateRegister = (inputToCheck) =>
-  validation(registerSchema, inputToCheck);
+const validateRegister = (inputToCheck) => validation(registerSchema, inputToCheck);
 
 export { validateRegister };

@@ -1,37 +1,14 @@
 import { useState } from "react";
-import {
-  Container,
-  TextField,
-  Grid,
-  Typography,
-  Divider,
-  Button,
-  Paper,
-} from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import { Container, TextField, Grid, Typography, Divider, Button, } from "@mui/material";
+import { Link } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const CreateCardPage = () => {
-  const [inputsValue, setInputValue] = useState({
-    title: "",
-    subtitle: "",
-    phone: "",
-    add: "",
-    mail: "",
-    description: "",
-    web: "",
-    url: "",
-    alt: "",
-    state: "",
-    country: "",
-    city: "",
-    street: "",
-    houseNumber: "",
-    zip: "",
-  });
-  const { id: _id } = useParams();
+  const [inputsValue, setInputValue] = useState({ title: "", subtitle: "", phone: "", add: "", 
+  mail: "", description: "", web: "", url: "", alt: "", state: "", country: "", city: "", street: "", houseNumber: "", zip: "", });
+  
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
       ...currentState,
@@ -60,7 +37,6 @@ const CreateCardPage = () => {
           zip: +inputsValue.zip,
         },
       });
-
       toast("You logged out successfully 👌", {
         position: "top-right",
         autoClose: 5000,
@@ -71,13 +47,11 @@ const CreateCardPage = () => {
         progress: undefined,
         theme: "light",
       });
-
     } catch (err) {
       console.log("err", err.response);
     }
   };
-  
-  
+
   return (
     <Container sx={{ padding: "50px" }}>
       <Typography variant="h2" sx={{ mb: 1, padding: "10px", pb: "0px" }}>

@@ -5,22 +5,17 @@ import { Typography, Container, Paper, Grid } from '@mui/material';
 
 const ShowCard = () => {
     const { id: _id } = useParams();
-
     const [dataFromServer, setDataFromServer] = useState();
-
     useEffect(() => {
         axios
             .get("/cards/"+_id)
             .then(({ data }) => {
-                console.log("DATAaaaaaaaaaaaaaaaaaaaa", data);
                 setDataFromServer(data);
             })
             .catch((err) => {
                 console.log("err", err);
             });
     }, []);
-
-    // console.log("imageeee",dataFromServer);
 
     return (dataFromServer ?
     <Container maxWidth="md">

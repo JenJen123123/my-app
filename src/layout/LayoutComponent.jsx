@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import HeaderComponent from "./header/HeaderComponent";
@@ -9,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { darkThemeActions } from "../store/darkThemeSlice";
 
 const LayoutComponent = ({ children }) => {
-  // const [isDarkTheme, setIsDarkTheme] = useState(false);
   const isDarkTheme = useSelector((bigPie) => bigPie.darkThemeSlice.darkTheme);
   const dispatch = useDispatch();
 

@@ -34,7 +34,6 @@ const CardComponent = ({
   const userData = useSelector((bigPie) => bigPie.authSlice);
 
   const handlePhoneClick = () => {
-    // console.log("you clicked on phone btn");
     onShowCard(_id);
   };
   const handleDeleteCardClick = () => {

@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -34,7 +34,7 @@ const AdminPanel = ({
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src={image} />
+                    <Avatar alt="User avatar" src={image} />
                 </ListItemAvatar>
                 <ListItemText
                     primary={

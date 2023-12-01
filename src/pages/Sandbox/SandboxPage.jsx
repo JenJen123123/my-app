@@ -1,16 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import { Fragment } from "react";
-import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AdminPanel from "./AdminPanel";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
@@ -34,7 +25,6 @@ const SandboxPage = () => {
   const handleDelete = async (id) => {
     try {
       const { data } = await axios.delete("users/" + id);
- 
       const updatedUsers = dataFromServer.filter((user) => user._id !== id);
       setDataFromServer(updatedUsers);
       
@@ -75,7 +65,6 @@ const SandboxPage = () => {
         />
       </Box>
     ))
-
   );
 };
 export default SandboxPage;

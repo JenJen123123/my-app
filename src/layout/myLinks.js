@@ -10,7 +10,6 @@ const alwaysLinks = [
   { to: ROUTES.ABOUT, children: "About" }];
 
 const loggedInLinks = [
-  // { to: "/profile", children: "Profile page" },
   { to: ROUTES.FAV, children: "Fav Cards" },
   { to: ROUTES.LOGOUT, children: "Logout" },
 ];

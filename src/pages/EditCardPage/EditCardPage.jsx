@@ -6,7 +6,6 @@ import {
   Typography,
   Divider,
   Button,
-  Paper,
 } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
