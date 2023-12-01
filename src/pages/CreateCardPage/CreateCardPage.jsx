@@ -11,6 +11,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const CreateCardPage = () => {
   const [inputsValue, setInputValue] = useState({
@@ -31,7 +32,6 @@ const CreateCardPage = () => {
     zip: "",
   });
   const { id: _id } = useParams();
-  // console.log(_id);
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
       ...currentState,
@@ -60,11 +60,24 @@ const CreateCardPage = () => {
           zip: +inputsValue.zip,
         },
       });
-      console.log("data from response", data);
+
+      toast("You logged out successfully 👌", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
     } catch (err) {
       console.log("err", err.response);
     }
   };
+  
+  
   return (
     <Container sx={{ padding: "50px" }}>
       <Typography variant="h2" sx={{ mb: 1, padding: "10px", pb: "0px" }}>
@@ -206,7 +219,7 @@ const CreateCardPage = () => {
             sx={{ mt: 2, width: "100%", ml: "0%", bgcolor: "lightskyblue" }}
             onClick={handleUpdateChangesClick}
           >
-            Update Changes
+            Submit
           </Button>
         </Grid>
         <Grid item xs>
@@ -221,14 +234,11 @@ const CreateCardPage = () => {
                 color: "gray",
               }}
             >
-              Discard Changes
+              Discard
             </Button>
           </Link>
         </Grid>
       </Grid>
-      <Paper elevation={1} variant="elevation">
-        Special thanks to Inon
-      </Paper>
     </Container>
   );
 };

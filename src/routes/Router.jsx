@@ -23,6 +23,11 @@ import CounterActionsPage from "../playground/l11/CounterActionsPage";
 import CreateCardPage from "../pages/CreateCardPage/CreateCardPage";
 import AuthGuard from "../Guard/AuthGuard";
 import BizGuard from "../Guard/BizGuard";
+import About from "../pages/About/About";
+import Logout from "../pages/login/Logout";
+import FavCards from "../pages/Fav/FavCards";
+import ShowCard from "../layout/CardInfo/ShowCard";
+import UpdateUser from "../pages/Sandbox/UpdateUser"
 
 const Router = () => {
   return (
@@ -30,6 +35,9 @@ const Router = () => {
       <Route path={ROUTES.HOME} element={<HomePage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.ABOUT} element={<About />} />
+      <Route path={ROUTES.LOGOUT} element={<Logout />} />
+      <Route path={ROUTES.FAV} element={<FavCards />} />
       <Route
         path={ROUTES.CREATECARD}
         element={
@@ -41,6 +49,8 @@ const Router = () => {
         }
       />
       <Route path={`${ROUTES.EDITCARD}/:id`} element={<EditCardPage />} />
+      <Route path={`${ROUTES.CARD}/:id`} element={<ShowCard />} />
+      <Route path={`${ROUTES.UPDATE}/:id`} element={<UpdateUser />} />
       <Route path={ROUTES.SANDBOX} element={<SandboxPage />}>
         <Route path="l1css" element={<Css1Component />} />
         <Route path="effect1" element={<Effect1 />} />

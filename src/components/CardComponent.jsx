@@ -14,6 +14,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 const CardComponent = ({
   _id,
@@ -23,26 +24,33 @@ const CardComponent = ({
   address,
   img,
   alt,
+  like,
   cardNumber,
   onDeleteCard,
   onEditCard,
+  onLikeCard,
+  onShowCard,
 }) => {
-  console.log("CardComponent");
+  const userData = useSelector((bigPie) => bigPie.authSlice);
+
   const handlePhoneClick = () => {
-    console.log("you clicked on phone btn");
+    // console.log("you clicked on phone btn");
+    onShowCard(_id);
   };
   const handleDeleteCardClick = () => {
-    console.log("_id to delete (CardComponent)", _id);
     onDeleteCard(_id);
   };
   const handleClickEditCard = () => {
-    // console.log("move to edit card page");
     onEditCard(_id);
   };
+  const handleLikeCardClick = () => {
+    onLikeCard(_id);
+  };
+
   return (
-    <Card>
+    <Card sx={{ boxShadow: 5, minHeight: 445, border: 1 }}>
       <CardActionArea>
-        <CardMedia component="img" image={img} alt={alt} />
+        <CardMedia sx={{ maxHeight: 180, minHeight: 180 }} component="img" image={img} alt={alt} />
       </CardActionArea>
       <CardContent>
         <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
@@ -72,17 +80,17 @@ const CardComponent = ({
             <IconButton onClick={handlePhoneClick}>
               <PhoneIcon />
             </IconButton>
-            <IconButton onClick={handleClickEditCard}>
+            {userData.loggedIn ? <IconButton onClick={handleClickEditCard}>
               <CreateIcon />
-            </IconButton>
+            </IconButton> : ""}
           </Box>
           <Box>
-            <IconButton onClick={handleDeleteCardClick}>
+            {userData.loggedIn && userData.userData.isAdmin ? <IconButton onClick={handleDeleteCardClick}>
               <DeleteIcon />
-            </IconButton>
-            <IconButton>
-              <FavoriteIcon />
-            </IconButton>
+            </IconButton> : ""}
+            {userData.loggedIn ? <IconButton onClick={handleLikeCardClick}>
+              <FavoriteIcon sx={{ color: like ? "red" : "gray" }} />
+            </IconButton> : ""}
           </Box>
         </Box>
       </CardContent>
@@ -98,9 +106,11 @@ CardComponent.propTypes = {
   address: PropTypes.string,
   img: PropTypes.string,
   alt: PropTypes.string,
+  like: PropTypes.bool,
   cardNumber: PropTypes.number,
   onDeleteCard: PropTypes.func.isRequired,
   onEditCard: PropTypes.func.isRequired,
+  onShowCard: PropTypes.func.isRequired,
 };
 CardComponent.defaultProps = {
   img: "https://www.livemint.com/lm-img/img/2023/08/14/1600x900/garena_free_fire_max_1688877791610_1691982307589.jpg",

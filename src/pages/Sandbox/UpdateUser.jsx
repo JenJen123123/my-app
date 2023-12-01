@@ -10,15 +10,16 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import { normalizeData } from "./normalizeData";
+import { normalizeUpdatedData } from "./normalizeUpdatedData"
 import { validateRegister } from "../../validation/registerValidation";
 import ROUTES from "../../routes/ROUTES";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const RegisterPage = () => {
+const UpdateUser = () => {
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const [inputsValue, setInputsValue] = useState({
     first: "",
     middle: "",
@@ -34,7 +35,6 @@ const RegisterPage = () => {
     street: "",
     houseNumber: "",
     zip: "",
-    isBusiness: false,
   });
 
   const handleInputsChange = (e) => {
@@ -58,15 +58,11 @@ const RegisterPage = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      // inputsValue.isBusiness = false;
-      const errors = validateRegister(inputsValue);
-      console.log(errors);
-      if (errors) return;
-      let request = normalizeData(inputsValue);
-      const { data } = await axios.post("/users", request);
+      let request = normalizeUpdatedData(inputsValue);
+      const { data } = await axios.put("/users/" + id, request);
       console.log("data", data);
 
-      toast("You registered successfully 👌", {
+      toast("User Updated successfully 👌", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -76,7 +72,7 @@ const RegisterPage = () => {
         progress: undefined,
         theme: "light",
       });
-      navigate(ROUTES.HOME);
+      navigate(ROUTES.SANDBOX);
 
     } catch (err) {
       console.log(err);
@@ -92,11 +88,8 @@ const RegisterPage = () => {
         alignItems: "center",
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-        <LockOutlinedIcon />
-      </Avatar>
       <Typography component="h1" variant="h5">
-        Sign up
+        Update User
       </Typography>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
         <Grid container spacing={2}>
@@ -134,31 +127,6 @@ const RegisterPage = () => {
               name="last"
               autoComplete="family-name"
               value={inputsValue.last}
-              onChange={handleInputsChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              value={inputsValue.email}
-              onChange={handleInputsChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="new-password"
-              value={inputsValue.password}
               onChange={handleInputsChange}
             />
           </Grid>
@@ -279,18 +247,11 @@ const RegisterPage = () => {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Sign Up
+          Update
         </Button>
-        <Grid container justifyContent="flex-end">
-          <Grid item>
-            <Link href="#" variant="body2">
-              Already have an account? Sign in
-            </Link>
-          </Grid>
-        </Grid>
       </Box>
     </Box>
   );
 };
 
-export default RegisterPage;
+export default UpdateUser;

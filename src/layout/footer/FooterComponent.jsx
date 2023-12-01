@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import {
   BottomNavigation,
   BottomNavigationAction,
+  Box,
   Divider,
   Typography,
 } from "@mui/material";
@@ -13,28 +14,37 @@ import myLinks from "../myLinks";
 import NavLinkComponent from "../header/NavLinkComponent";
 import { NavLink } from "react-router-dom";
 import nextKey from "generate-my-key";
+import Links from "../header/ui/Links";
 
 const FooterComponent = () => {
   const [value, setValue] = useState(0);
   return (
     <Fragment>
-      <Divider></Divider>
-      <BottomNavigation
+
+      <BottomNavigation sx={{
+        mt: 2,
+        pt: 0.5,
+        boxShadow: 2
+      }}
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
       >
-        {myLinks.map((mylink) => (
-          <NavLinkComponent to={mylink.to} key={nextKey()}>
-            {mylink.children}
-          </NavLinkComponent>
-        ))}
-        {/* <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} /> */}
+
+
+        <div>
+          <Links />
+        </div>
+
+
       </BottomNavigation>
+
+
+
+
+
     </Fragment>
   );
 };

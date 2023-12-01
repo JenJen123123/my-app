@@ -1,5 +1,4 @@
 import * as React from "react";
-// import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,36 +8,39 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Switch } from "@mui/material";
-// import { Link } from "react-router-dom";
-// import ROUTES from "../../routes/ROUTES";
-// import NavLinkComponent from "./NavLinkComponent";
-// import nextKey from "generate-my-key";
-// import myLinks, {
-//   alwaysLinks,
-//   loggedInLinks,
-//   loggedOutLinks,
-// } from "../myLinks";
-
-import Search from "./ui/Search";
-import SearchIconWrapper from "./ui/SearchIconWrapper";
-import StyledInputBase from "./ui/StyledInputBase";
+import { Button, Switch } from "@mui/material";
+import { useParams } from "react-router-dom";
 import Links from "./ui/Links";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent";
 import { useState } from "react";
+import FilterComponent from "./ui/FilterComponent";
+import axios from "axios";
+import Test from "../../Test"
+import LinksVertical from "./ui/LinksVertical";
+import { useLocation } from "react-router-dom";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
+
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+
+  const location = useLocation();
+
+  // Define an array of route paths where you want to show the component
+  const allowedPaths = ['/', '/fav'];
+
+  // Check if the current route is in the allowed paths
+  const shouldRender = allowedPaths.includes(location.pathname);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -108,14 +110,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages!!</p>
+        <LinksVertical/>
       </MenuItem>
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -138,15 +135,16 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+      </MenuItem> */}
     </Menu>
   );
 
   return (
+    // <Test/>
     <Box sx={{ flexGrow: 1, mb: 2 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{maxHeight: 60, mt:0.5}}>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -155,25 +153,17 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             onClick={handleOpenDrawerClick}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            LOGO
+            BCards
           </Typography>
           <Links />
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {shouldRender ? <FilterComponent /> : null}
           <Box
             sx={{
               my: 2,
@@ -186,8 +176,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             <Switch checked={isDarkTheme} onChange={handleThemeChange} />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
+          {/* <Box sx={{ display: { xs: "none", md: "flex" } }}> */}
+            {/* <Button variant="contained" onClick={handleLike}>xxx</Button> */}
+            {/* <IconButton
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
@@ -204,8 +195,8 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
-            <IconButton
+            </IconButton> */}
+            {/* <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -215,9 +206,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            </IconButton> */}
+          {/* </Box> */}
+          <Box sx={{ display: { xs: "flex", md: "flex", lg:"none" } }}>
             <IconButton
               size="large"
               aria-label="show more"
